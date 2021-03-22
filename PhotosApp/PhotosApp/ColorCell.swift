@@ -9,9 +9,15 @@ import UIKit
 
 class ColorCell: UICollectionViewCell {
 
+    static let identifier = "ColorCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.backgroundColor = UIColor.black
     }
 
+    static func nib() -> UINib {
+        return UINib(nibName: ColorCell.identifier, bundle: nil)
+    }
 }
