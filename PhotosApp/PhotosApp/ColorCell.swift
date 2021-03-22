@@ -14,7 +14,7 @@ class ColorCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.backgroundColor = UIColor.black
+        self.backgroundColor = UIColor.random
     }
 
     static func nib() -> UINib {
