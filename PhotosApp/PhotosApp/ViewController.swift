@@ -8,12 +8,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    //@IBOutlet weak var colorCell: UICollectionViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
+}
 
-
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 40
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return ColorCell()
+    }
 }
 
