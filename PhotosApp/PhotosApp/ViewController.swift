@@ -12,6 +12,7 @@ class ViewController: UIViewController {
  
     @IBOutlet weak var collectionView: UICollectionView!
     var allPhotos: PHFetchResult<PHAsset>!
+    let imageManager = PHCachingImageManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +32,18 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let asset = allPhotos.object(at: indexPath.item)
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as! ColorCell
+        var cell = ColorCell()
+        imageManager.requestImage(for: asset, targetSize: CGSize(width: 50.0, height: 50.0), contentMode: .aspectFill, options: nil) { image, _ in
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as! ColorCell
+            cell.imageView = UIImageView(image: image)
+        }
         return cell
     }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: 80.0, height: 80.0)
+        let size = CGSize(width: 100.0, height: 100.0)
         return size
     }
 }
