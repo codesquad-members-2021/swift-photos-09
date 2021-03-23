@@ -15,8 +15,22 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bda-ew-Ead">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                    </imageView>
+                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="bda-ew-Ead" secondAttribute="trailing" id="BDf-Ji-PRH"/>
+                <constraint firstItem="bda-ew-Ead" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Fok-RN-4Gs"/>
+                <constraint firstAttribute="bottom" secondItem="bda-ew-Ead" secondAttribute="bottom" id="Slt-Nw-xOm"/>
+                <constraint firstItem="bda-ew-Ead" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dqx-iH-j5M"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="bda-ew-Ead" id="khq-eM-knX"/>
+            </connections>
             <point key="canvasLocation" x="139" y="104"/>
         </collectionViewCell>
     </objects>
