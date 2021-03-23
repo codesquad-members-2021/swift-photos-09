@@ -10,7 +10,7 @@ import UIKit
 class ColorCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
-    static let identifier = "ColorCell"
+    var identifier = "ColorCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,6 +18,6 @@ class ColorCell: UICollectionViewCell {
     }
 
     static func nib() -> UINib {
-        return UINib(nibName: ColorCell.identifier, bundle: nil)
+        return UINib(nibName: ColorCell().identifier, bundle: nil)
     }
 }

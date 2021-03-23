@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(ColorCell.nib(), forCellWithReuseIdentifier: ColorCell.identifier)
+        collectionView.register(ColorCell.nib(), forCellWithReuseIdentifier: ColorCell().identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -32,10 +32,15 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let asset = allPhotos.object(at: indexPath.item)
-        var cell = ColorCell()
+      
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
+        cell.identifier = asset.localIdentifier
         imageManager.requestImage(for: asset, targetSize: CGSize(width: 50.0, height: 50.0), contentMode: .aspectFill, options: nil) { image, _ in
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as! ColorCell
-            cell.imageView = UIImageView(image: image)
+            
+            if cell.identifier == asset.localIdentifier {
+
+                cell.imageView.image = image
+            }
         }
         return cell
     }
