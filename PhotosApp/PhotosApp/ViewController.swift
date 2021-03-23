@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(ColorCell.nib(), forCellWithReuseIdentifier: ColorCell().identifier)
+        collectionView.register(ColorCell.self, forCellWithReuseIdentifier: ColorCell().identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -31,14 +31,13 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let asset = allPhotos.object(at: indexPath.item)
-      
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
+        
+        let asset = allPhotos.object(at: indexPath.item)
         cell.identifier = asset.localIdentifier
-        imageManager.requestImage(for: asset, targetSize: CGSize(width: 50.0, height: 50.0), contentMode: .aspectFill, options: nil) { image, _ in
+        imageManager.requestImage(for: asset, targetSize: CGSize(width: 80.0, height: 80.0), contentMode: .aspectFill, options: nil) { image, _ in
             
             if cell.identifier == asset.localIdentifier {
-
                 cell.imageView.image = image
             }
         }
@@ -48,7 +47,7 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: 100.0, height: 100.0)
+        let size = CGSize(width: 80.0, height: 80.0)
         return size
     }
 }
