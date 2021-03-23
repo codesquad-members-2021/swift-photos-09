@@ -21,6 +21,12 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         
         allPhotos = PHAsset.fetchAssets(with: nil)
+        
+        PHPhotoLibrary.shared().register(self)
+    }
+    
+    deinit {
+        PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
 }
 
@@ -56,3 +62,24 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension ViewController: PHPhotoLibraryChangeObserver {
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        
+        guard let changes = changeInstance.changeDetails(for: allPhotos) else { return }
+        
+        DispatchQueue.main.sync {
+            allPhotos = changes.fetchResultAfterChanges
+            if changes.hasIncrementalChanges {
+                if let removed = changes.removedIndexes, !removed.isEmpty {
+                    print("removed")
+                }
+                if let inserted = changes.insertedIndexes, !inserted.isEmpty {
+                    print("inserted")
+                }
+                changes.enumerateMoves { fromIndex, toIndex in
+                    print("moves")
+                }
+            }
+        }
+    }
+}
