@@ -8,15 +8,16 @@
 import UIKit
 
 class ColorCell: UICollectionViewCell {
-
-    static let identifier = "ColorCell"
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var identifier = "ColorCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.random
+        imageView.contentMode = .scaleAspectFill
     }
 
     static func nib() -> UINib {
-        return UINib(nibName: ColorCell.identifier, bundle: nil)
+        return UINib(nibName: ColorCell().identifier, bundle: nil)
     }
 }
