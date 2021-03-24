@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1EADF6EC260B152400987D3E /* DoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EADF6EB260B152400987D3E /* DoodleViewController.swift */; };
+		1EADF6EF260B15F200987D3E /* doodle.json in Resources */ = {isa = PBXBuildFile; fileRef = 1EADF6EE260B15F200987D3E /* doodle.json */; };
 		1EF248F12608682B00847FD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF248F02608682B00847FD3 /* AppDelegate.swift */; };
 		1EF248F32608682B00847FD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF248F22608682B00847FD3 /* SceneDelegate.swift */; };
 		1EF248F52608682B00847FD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF248F42608682B00847FD3 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		1EADF6EB260B152400987D3E /* DoodleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleViewController.swift; sourceTree = "<group>"; };
+		1EADF6EE260B15F200987D3E /* doodle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = doodle.json; path = ../../doodle.json; sourceTree = "<group>"; };
 		1EF248ED2608682B00847FD3 /* PhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF248F02608682B00847FD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF248F22608682B00847FD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				1EF248F92608682C00847FD3 /* Assets.xcassets */,
 				1EF248FB2608682C00847FD3 /* LaunchScreen.storyboard */,
 				1EF248FE2608682C00847FD3 /* Info.plist */,
+				1EADF6EE260B15F200987D3E /* doodle.json */,
 				1EF2490C26087D6300847FD3 /* UIColor+Random.swift */,
 				1EADF6EB260B152400987D3E /* DoodleViewController.swift */,
 			);
@@ -140,6 +143,7 @@
 				E414981326086E4F00D00B67 /* ColorCell.xib in Resources */,
 				1EF248FA2608682C00847FD3 /* Assets.xcassets in Resources */,
 				1EF248F82608682B00847FD3 /* Main.storyboard in Resources */,
+				1EADF6EF260B15F200987D3E /* doodle.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
