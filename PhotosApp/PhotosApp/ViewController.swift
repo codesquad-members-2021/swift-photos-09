@@ -26,16 +26,17 @@ class ViewController: UIViewController {
         parseJson(fileName: "doodle")
     }
     
-    func parseJson(fileName: String) -> DoodleModel? {
+    func parseJson(fileName: String) -> [DoodleModel]? {
         if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {
+                print("url", url)
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(DoodleModel.self, from: data)
-                let imageName = jsonData.imageName
-                let doodle = DoodleModel(imageName: imageName)
-                print(doodle)
-                return doodle
+                let jsonData = try decoder.decode([DoodleData].self, from: data)
+                let imageNames = jsonData.map { $0.image }
+                let doodles = imageNames.map { DoodleModel(imageName: $0)}
+                print("doodles", doodles)
+                return doodles
             } catch {
                 print(error)
             }

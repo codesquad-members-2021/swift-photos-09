@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct DoodleModel: Decodable {
+struct DoodleModel {
     let imageName: String
 }
