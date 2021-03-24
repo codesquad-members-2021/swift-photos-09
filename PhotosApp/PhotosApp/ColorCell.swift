@@ -14,6 +14,7 @@ class ColorCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imageView.contentMode = .scaleAspectFill
     }
 
     static func nib() -> UINib {
