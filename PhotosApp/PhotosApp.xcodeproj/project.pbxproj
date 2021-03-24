@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EADF6EC260B152400987D3E /* DoodleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EADF6EB260B152400987D3E /* DoodleViewController.swift */; };
 		1EF248F12608682B00847FD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF248F02608682B00847FD3 /* AppDelegate.swift */; };
 		1EF248F32608682B00847FD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF248F22608682B00847FD3 /* SceneDelegate.swift */; };
 		1EF248F52608682B00847FD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF248F42608682B00847FD3 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EADF6EB260B152400987D3E /* DoodleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleViewController.swift; sourceTree = "<group>"; };
 		1EF248ED2608682B00847FD3 /* PhotosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF248F02608682B00847FD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF248F22608682B00847FD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				1EF248FB2608682C00847FD3 /* LaunchScreen.storyboard */,
 				1EF248FE2608682C00847FD3 /* Info.plist */,
 				1EF2490C26087D6300847FD3 /* UIColor+Random.swift */,
+				1EADF6EB260B152400987D3E /* DoodleViewController.swift */,
 			);
 			path = PhotosApp;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EF2490D26087D6300847FD3 /* UIColor+Random.swift in Sources */,
+				1EADF6EC260B152400987D3E /* DoodleViewController.swift in Sources */,
 				1EF248F52608682B00847FD3 /* ViewController.swift in Sources */,
 				E414981226086E4F00D00B67 /* ColorCell.swift in Sources */,
 				1EF248F12608682B00847FD3 /* AppDelegate.swift in Sources */,
