@@ -23,6 +23,24 @@ class ViewController: UIViewController {
         allPhotos = PHAsset.fetchAssets(with: nil)
         
         PHPhotoLibrary.shared().register(self)
+        parseJson(fileName: "doodle")
+    }
+    
+    func parseJson(fileName: String) -> DoodleModel? {
+        if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode(DoodleModel.self, from: data)
+                let imageName = jsonData.imageName
+                let doodle = DoodleModel(imageName: imageName)
+                print(doodle)
+                return doodle
+            } catch {
+                print(error)
+            }
+        }
+        return nil
     }
     
     deinit {
