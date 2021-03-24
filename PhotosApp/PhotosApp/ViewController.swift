@@ -29,13 +29,12 @@ class ViewController: UIViewController {
     func parseJson(fileName: String) -> [DoodleModel]? {
         if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {
-                print("url", url)
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([DoodleData].self, from: data)
                 let imageNames = jsonData.map { $0.image }
                 let doodles = imageNames.map { DoodleModel(imageName: $0)}
-                print("doodles", doodles)
+    
                 return doodles
             } catch {
                 print(error)
@@ -52,21 +51,49 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allPhotos.count
+//        return allPhotos.count
+//        return parseJson(fileName: "doodle")?.count ?? 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let asset = allPhotos.object(at: indexPath.item)
-   
+//        let asset = allPhotos.object(at: indexPath.item)
+//
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
+//        cell.identifier = asset.localIdentifier
+//        imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: .none) { image, _ in
+//
+//            if cell.identifier == asset.localIdentifier {
+//
+//                cell.imageView.image = image
+//            }
+//        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
-        cell.identifier = asset.localIdentifier
-        imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: .none) { image, _ in
-            
-            if cell.identifier == asset.localIdentifier {
+        
+//        if let doodles = parseJson(fileName: "doodle") {
+//
+//
+//            let urls = doodles.map {
+//                URL(string: $0.imageName)
+//            }
+//            do {
+//                let datas = try urls.map {
+//
+//                    try Data(contentsOf: $0!)
+//                }
+//                cell.imageView.image = UIImage(data: datas[indexPath.row])
+//            } catch {
+//                print(error)
+//            }
+//        }
+//
+//        print(indexPath.row)
 
-                cell.imageView.image = image
-            }
-        }
+        let test = parseJson(fileName: "doodle")![0].imageName
+        let url = URL(string: test)
+        let data = try? Data(contentsOf: url!)
+        cell.imageView.image = UIImage(data: data!)
+        
         return cell
     }
 }
