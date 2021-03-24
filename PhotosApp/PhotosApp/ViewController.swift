@@ -38,13 +38,10 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let asset = allPhotos.object(at: indexPath.item)
-        let option = PHImageRequestOptions()
-   
-        option.resizeMode = .exact
    
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
         cell.identifier = asset.localIdentifier
-        imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: option) { image, _ in
+        imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: .none) { image, _ in
             
             if cell.identifier == asset.localIdentifier {
 
