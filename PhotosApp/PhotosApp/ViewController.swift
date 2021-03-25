@@ -26,23 +26,6 @@ class ViewController: UIViewController {
         PHPhotoLibrary.shared().register(self)
     }
     
-    func parseJson(fileName: String) -> [DoodleModel]? {
-        if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([DoodleData].self, from: data)
-                let imageNames = jsonData.map { $0.image }
-                let doodles = imageNames.map { DoodleModel(imageName: $0)}
-                
-                return doodles
-            } catch {
-                print(error)
-            }
-        }
-        return nil
-    }
-    
     deinit {
         PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
@@ -51,8 +34,9 @@ class ViewController: UIViewController {
         guard let doodleViewController = self.storyboard?.instantiateViewController(withIdentifier: "DoodleViewController") else {
             return
         }
-        self.navigationController?.present(doodleViewController, animated: true, completion: nil)
-      
+        //self.navigationController?.present(doodleViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(doodleViewController, animated: true)
+        //self.present(doodleViewController, animated: true, completion: nil)
     }
 }
 

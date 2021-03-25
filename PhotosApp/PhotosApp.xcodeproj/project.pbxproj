@@ -20,6 +20,7 @@
 		1EF2490D26087D6300847FD3 /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2490C26087D6300847FD3 /* UIColor+Random.swift */; };
 		E414981226086E4F00D00B67 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E414981026086E4F00D00B67 /* ColorCell.swift */; };
 		E414981326086E4F00D00B67 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414981126086E4F00D00B67 /* ColorCell.xib */; };
+		E4215B6F260C3059007B60F5 /* DoodleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4215B6E260C3059007B60F5 /* DoodleViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		1EF2490C26087D6300847FD3 /* UIColor+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
 		E414981026086E4F00D00B67 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		E414981126086E4F00D00B67 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
+		E4215B6E260C3059007B60F5 /* DoodleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodleViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				E414981026086E4F00D00B67 /* ColorCell.swift */,
 				E414981126086E4F00D00B67 /* ColorCell.xib */,
 				1EF248F62608682B00847FD3 /* Main.storyboard */,
+				E4215B6E260C3059007B60F5 /* DoodleViewCell.swift */,
 				1EF248F92608682C00847FD3 /* Assets.xcassets */,
 				1EF248FB2608682C00847FD3 /* LaunchScreen.storyboard */,
 				1EF248FE2608682C00847FD3 /* Info.plist */,
@@ -162,6 +165,7 @@
 			files = (
 				1EF2490D26087D6300847FD3 /* UIColor+Random.swift in Sources */,
 				1EADF6F2260B171000987D3E /* DoodleData.swift in Sources */,
+				E4215B6F260C3059007B60F5 /* DoodleViewCell.swift in Sources */,
 				1EADF6EC260B152400987D3E /* DoodleViewController.swift in Sources */,
 				1EF248F52608682B00847FD3 /* ViewController.swift in Sources */,
 				1EADF6F5260B197800987D3E /* DoodleModel.swift in Sources */,
