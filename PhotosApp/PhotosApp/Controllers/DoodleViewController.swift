@@ -45,10 +45,11 @@ class DoodleViewController: UICollectionViewController {
     
     @objc
     func savePhoto(sender: UIMenuController) {
-        UIImageWriteToSavedPhotosAlbum(savedItem.imageView.image ?? UIImage(), self, #selector(image), nil)
+        UIImageWriteToSavedPhotosAlbum(savedItem.imageView.image ?? UIImage(), self, #selector(showAlert), nil)
     }
     
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+    @objc
+    func showAlert(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -68,8 +69,8 @@ class DoodleViewController: UICollectionViewController {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([DoodleData].self, from: data)
-                let imageNames = jsonData.map { $0.image }
-                let doodles = imageNames.map { DoodleModel(imageName: $0)}
+                let imageNames = jsonData.map { $0.imageURL }
+                let doodles = imageNames.map { DoodleModel(imageURL: $0)}
                 
                 return doodles
             } catch {
@@ -91,7 +92,7 @@ extension DoodleViewController {
         
         DispatchQueue(label: "jsonLoading", qos: .background).async {
             guard let doodle = self.parseJson(fileName: "doodle")?[indexPath.item] else { return }
-            if let url = URL(string: doodle.imageName) {
+            if let url = URL(string: doodle.imageURL) {
                 let task = URLSession.shared.dataTask(with: url) { data, response, error in
                     guard let data = data, error == nil else { return }
                     DispatchQueue.main.async {
@@ -101,10 +102,6 @@ extension DoodleViewController {
                 task.resume()
             }
         }
-        
-        let longPressGesutreRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellDidPress))
-        longPressGesutreRecognizer.minimumPressDuration = 0.3
-        cell.addGestureRecognizer(longPressGesutreRecognizer)
         
         return cell
     }
