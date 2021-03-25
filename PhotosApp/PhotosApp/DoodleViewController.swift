@@ -9,4 +9,16 @@ import UIKit
 
 class DoodleViewController: UICollectionViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.collectionView.backgroundColor = .darkGray
+        
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonPressed))
+        self.navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc
+    func closeButtonPressed() {
+        
+    }
 }
