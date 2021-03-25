@@ -9,7 +9,7 @@ import UIKit
 import Photos
 
 class ViewController: UIViewController {
- 
+    
     @IBOutlet weak var collectionView: UICollectionView!
     var allPhotos: PHFetchResult<PHAsset>!
     let imageManager = PHCachingImageManager()
@@ -23,7 +23,6 @@ class ViewController: UIViewController {
         allPhotos = PHAsset.fetchAssets(with: nil)
         
         PHPhotoLibrary.shared().register(self)
-        parseJson(fileName: "doodle")
     }
     
     func parseJson(fileName: String) -> [DoodleModel]? {
@@ -34,7 +33,7 @@ class ViewController: UIViewController {
                 let jsonData = try decoder.decode([DoodleData].self, from: data)
                 let imageNames = jsonData.map { $0.image }
                 let doodles = imageNames.map { DoodleModel(imageName: $0)}
-    
+                
                 return doodles
             } catch {
                 print(error)
@@ -51,48 +50,21 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return allPhotos.count
-//        return parseJson(fileName: "doodle")?.count ?? 0
-        return 1
+        return allPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let asset = allPhotos.object(at: indexPath.item)
-//
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
-//        cell.identifier = asset.localIdentifier
-//        imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: .none) { image, _ in
-//
-//            if cell.identifier == asset.localIdentifier {
-//
-//                cell.imageView.image = image
-//            }
-//        }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
+        let asset = allPhotos.object(at: indexPath.item)
         
-//        if let doodles = parseJson(fileName: "doodle") {
-//
-//
-//            let urls = doodles.map {
-//                URL(string: $0.imageName)
-//            }
-//            do {
-//                let datas = try urls.map {
-//
-//                    try Data(contentsOf: $0!)
-//                }
-//                cell.imageView.image = UIImage(data: datas[indexPath.row])
-//            } catch {
-//                print(error)
-//            }
-//        }
-//
-//        print(indexPath.row)
-
-        let test = parseJson(fileName: "doodle")![0].imageName
-        let url = URL(string: test)
-        let data = try? Data(contentsOf: url!)
-        cell.imageView.image = UIImage(data: data!)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorCell
+        cell.identifier = asset.localIdentifier
+        imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: .none) { image, _ in
+            
+            if cell.identifier == asset.localIdentifier {
+                
+                cell.imageView.image = image
+            }
+        }
         
         return cell
     }
