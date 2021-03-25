@@ -34,9 +34,7 @@ class ViewController: UIViewController {
         guard let doodleViewController = self.storyboard?.instantiateViewController(withIdentifier: "DoodleViewController") else {
             return
         }
-        //self.navigationController?.present(doodleViewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(doodleViewController, animated: true)
-        //self.present(doodleViewController, animated: true, completion: nil)
     }
 }
 
@@ -78,14 +76,8 @@ extension ViewController: PHPhotoLibraryChangeObserver {
         DispatchQueue.main.sync {
             allPhotos = changes.fetchResultAfterChanges
             if changes.hasIncrementalChanges {
-                if let removed = changes.removedIndexes, !removed.isEmpty {
-                    print("removed")
-                }
-                if let inserted = changes.insertedIndexes, !inserted.isEmpty {
-                    print("inserted")
-                }
-                changes.enumerateMoves { fromIndex, toIndex in
-                    print("moves")
+                if let changed = changes.changedIndexes, !changed.isEmpty {
+                    collectionView.reloadData()
                 }
             }
         }

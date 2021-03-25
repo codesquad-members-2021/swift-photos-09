@@ -55,7 +55,9 @@ class DoodleViewController: UICollectionViewController {
             present(ac, animated: true)
         } else {
             let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }))
             present(ac, animated: true)
         }
     }
