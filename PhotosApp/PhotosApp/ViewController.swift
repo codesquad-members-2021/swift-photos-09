@@ -48,9 +48,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTapAddPhotoButton(_ sender: Any) {
-        let doodleView = self.storyboard?.instantiateViewController(withIdentifier: "DoodleViewController")
-        doodleView?.modalTransitionStyle = .coverVertical
-        self.present(doodleView!, animated: true, completion: nil)
+        guard let doodleViewController = self.storyboard?.instantiateViewController(withIdentifier: "DoodleViewController") else {
+            return
+        }
+        self.navigationController?.present(doodleViewController, animated: true, completion: nil)
+      
     }
 }
 
