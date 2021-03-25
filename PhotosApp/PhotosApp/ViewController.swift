@@ -11,6 +11,7 @@ import Photos
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var addPhotoButton: UIBarButtonItem!
     var allPhotos: PHFetchResult<PHAsset>!
     let imageManager = PHCachingImageManager()
     
@@ -44,6 +45,12 @@ class ViewController: UIViewController {
     
     deinit {
         PHPhotoLibrary.shared().unregisterChangeObserver(self)
+    }
+    
+    @IBAction func didTapAddPhotoButton(_ sender: Any) {
+        let doodleView = self.storyboard?.instantiateViewController(withIdentifier: "DoodleViewController")
+        doodleView?.modalTransitionStyle = .coverVertical
+        self.present(doodleView!, animated: true, completion: nil)
     }
 }
 
