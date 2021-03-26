@@ -15,6 +15,7 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var addPhotoButton: UIBarButtonItem!
     var allPhotos: PHFetchResult<PHAsset>!
     let imageManager = PHCachingImageManager()
+    var savedItems: [PhotoCell] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +26,28 @@ class PhotoViewController: UIViewController {
         allPhotos = PHAsset.fetchAssets(with: nil)
         
         PHPhotoLibrary.shared().register(self)
+        
+        let longPressGesutreRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellDidPress))
+        longPressGesutreRecognizer.minimumPressDuration = 0.3
+        collectionView.addGestureRecognizer(longPressGesutreRecognizer)
     }
     
     deinit {
         PHPhotoLibrary.shared().unregisterChangeObserver(self)
+    }
+    
+    @objc
+    func cellDidPress(sender: UILongPressGestureRecognizer) {
+        let point = sender.location(in: collectionView)
+        let indexPath = self.collectionView.indexPathForItem(at: point)
+        if let indexPath = indexPath {
+            let cell = self.collectionView.cellForItem(at: indexPath) as! PhotoCell
+            savedItems.append(cell)
+            cell.becomeFirstResponder()
+            //let saveMenuItem = UIMenuItem(title: "Save", action: #selector(savePhoto))
+            //UIMenuController.shared.menuItems = [saveMenuItem]
+            //UIMenuController.shared.showMenu(from: collectionView, rect: cell.frame)
+        }
     }
     
     @IBAction func didTapAddPhotoButton(_ sender: Any) {
@@ -53,6 +72,10 @@ extension PhotoViewController: UICollectionViewDataSource {
         if asset.mediaSubtypes.contains(.photoLive) {
             cell.livePhotoBadgeImageView.image = PHLivePhotoView.livePhotoBadgeImage(options: .overContent)
         }
+        
+        let cellBackgroundView = UIView()
+        cellBackgroundView.backgroundColor = UIColor.red
+        cell.selectedBackgroundView = cellBackgroundView
         
         cell.identifier = asset.localIdentifier
         imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: .none) { image, _ in
