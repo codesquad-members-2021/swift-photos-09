@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import PhotosUI
 
 class PhotoViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var addPhotoButton: UIBarButtonItem!
     var allPhotos: PHFetchResult<PHAsset>!
     let imageManager = PHCachingImageManager()
+    let videoManager = VideoManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +26,17 @@ class PhotoViewController: UIViewController {
         allPhotos = PHAsset.fetchAssets(with: nil)
         
         PHPhotoLibrary.shared().register(self)
+        
+        collectionView.allowsMultipleSelection = true
+        updateDoneButtonState()
     }
     
     deinit {
         PHPhotoLibrary.shared().unregisterChangeObserver(self)
+    }
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        videoManager.build(outputSize: CGSize(width: 100.0, height: 100.0), collectionView: collectionView)
     }
     
     @IBAction func didTapAddPhotoButton(_ sender: Any) {
@@ -35,6 +44,10 @@ class PhotoViewController: UIViewController {
             return
         }
         self.navigationController?.pushViewController(doodleViewController, animated: true)
+    }
+    
+    func updateDoneButtonState() {
+        navigationItem.rightBarButtonItem?.isEnabled = collectionView.indexPathsForSelectedItems!.count >= 3
     }
 }
 
@@ -48,6 +61,15 @@ extension PhotoViewController: UICollectionViewDataSource {
         let asset = allPhotos.object(at: indexPath.item)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell().identifier, for: indexPath) as! PhotoCell
+        
+        if asset.mediaSubtypes.contains(.photoLive) {
+            cell.livePhotoBadgeImageView.image = PHLivePhotoView.livePhotoBadgeImage(options: .overContent)
+        }
+        
+        let cellBackgroundView = UIView()
+        cellBackgroundView.backgroundColor = UIColor.red
+        cell.selectedBackgroundView = cellBackgroundView
+        
         cell.identifier = asset.localIdentifier
         imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: .none) { image, _ in
             
@@ -58,6 +80,10 @@ extension PhotoViewController: UICollectionViewDataSource {
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        updateDoneButtonState()
     }
 }
 
