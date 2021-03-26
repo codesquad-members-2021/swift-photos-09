@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import PhotosUI
 
 class PhotoViewController: UIViewController {
     
@@ -48,6 +49,11 @@ extension PhotoViewController: UICollectionViewDataSource {
         let asset = allPhotos.object(at: indexPath.item)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell().identifier, for: indexPath) as! PhotoCell
+        
+        if asset.mediaSubtypes.contains(.photoLive) {
+            cell.livePhotoBadgeImageView.image = PHLivePhotoView.livePhotoBadgeImage(options: .overContent)
+        }
+        
         cell.identifier = asset.localIdentifier
         imageManager.requestImage(for: asset, targetSize: CGSize(width: 100.0, height: 100.0), contentMode: .aspectFill, options: .none) { image, _ in
             
