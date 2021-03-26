@@ -53,7 +53,11 @@
                                 <action selector="didTapAddPhotoButton:" destination="BYZ-38-t0r" id="sLr-dv-wLZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9zj-Cu-Y9m"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9zj-Cu-Y9m">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="BYZ-38-t0r" id="OSn-Z5-fyE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addPhotoButton" destination="Nt7-Ji-Eat" id="iCD-fZ-0qO"/>

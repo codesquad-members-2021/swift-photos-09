@@ -15,7 +15,7 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var addPhotoButton: UIBarButtonItem!
     var allPhotos: PHFetchResult<PHAsset>!
     let imageManager = PHCachingImageManager()
-    var savedItems: [PhotoCell] = []
+    let videoManager = VideoManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +27,6 @@ class PhotoViewController: UIViewController {
         
         PHPhotoLibrary.shared().register(self)
         
-        let longPressGesutreRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellDidPress))
-        longPressGesutreRecognizer.minimumPressDuration = 0.3
-        collectionView.addGestureRecognizer(longPressGesutreRecognizer)
-        
         collectionView.allowsMultipleSelection = true
         updateDoneButtonState()
     }
@@ -39,19 +35,8 @@ class PhotoViewController: UIViewController {
         PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
     
-    @objc
-    func cellDidPress(sender: UILongPressGestureRecognizer) {
-        let point = sender.location(in: collectionView)
-        let indexPath = self.collectionView.indexPathForItem(at: point)
-        if let indexPath = indexPath {
-            let cell = self.collectionView.cellForItem(at: indexPath) as! PhotoCell
-            savedItems.append(cell)
-            cell.becomeFirstResponder()
-          
-            //let saveMenuItem = UIMenuItem(title: "Save", action: #selector(savePhoto))
-            //UIMenuController.shared.menuItems = [saveMenuItem]
-            //UIMenuController.shared.showMenu(from: collectionView, rect: cell.frame)
-        }
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        videoManager.build(outputSize: CGSize(width: 100.0, height: 100.0), collectionView: collectionView)
     }
     
     @IBAction func didTapAddPhotoButton(_ sender: Any) {
