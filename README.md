@@ -31,5 +31,21 @@ iOS 짝프로그래밍 연습 - 9팀(쏭, Hong)
 * JSON파일을 다운로드 받아서 프로젝트에 추가, 파싱한 데이터를 이미지로 변환해 셀에 표시
 * UIMenuItem을 이용해 이미지를 사진보관함에 저장
 
-#### 완료날짜 : 2021년 03월 23일 (화) 18:00
+#### 완료날짜 : 2021년 03월 24일 (수) 18:00
+
+
+
+# AVAssetWriter 동영상 만들기
+
+## Step4. 사진으로 동영상 만들기
+
+* 라이브포토 이미지 표시
+*  Cell 다중 선택 및 SelectedBackgroundView 설정
+*  Select된 사진으로 동영상 만들기
+
+
+
+![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/73683735/112600795-f7c1c380-8e54-11eb-91fa-f662f9c07d50.gif)
+
+#### 완료날짜 : 2021년 03월 25일 (금) 18:00
 
