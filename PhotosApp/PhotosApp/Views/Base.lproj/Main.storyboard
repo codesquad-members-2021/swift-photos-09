@@ -48,11 +48,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photos" id="UpF-iQ-GhS">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Nt7-Ji-Eat">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Nt7-Ji-Eat">
                             <connections>
                                 <action selector="didTapAddPhotoButton:" destination="BYZ-38-t0r" id="sLr-dv-wLZ"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="9zj-Cu-Y9m"/>
                     </navigationItem>
                     <connections>
                         <outlet property="addPhotoButton" destination="Nt7-Ji-Eat" id="iCD-fZ-0qO"/>
