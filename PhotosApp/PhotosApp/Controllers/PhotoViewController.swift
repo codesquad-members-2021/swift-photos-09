@@ -30,6 +30,8 @@ class PhotoViewController: UIViewController {
         let longPressGesutreRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cellDidPress))
         longPressGesutreRecognizer.minimumPressDuration = 0.3
         collectionView.addGestureRecognizer(longPressGesutreRecognizer)
+        
+        collectionView.allowsMultipleSelection = true
     }
     
     deinit {
