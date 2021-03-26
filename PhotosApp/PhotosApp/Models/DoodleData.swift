@@ -8,5 +8,5 @@
 import Foundation
 
 struct DoodleData: Codable {
-    let imageURL: String
+    let image: String
 }

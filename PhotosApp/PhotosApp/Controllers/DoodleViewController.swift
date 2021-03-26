@@ -69,7 +69,7 @@ class DoodleViewController: UICollectionViewController {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([DoodleData].self, from: data)
-                let imageNames = jsonData.map { $0.imageURL }
+                let imageNames = jsonData.map { $0.image }
                 let doodles = imageNames.map { DoodleModel(imageURL: $0)}
                 
                 return doodles
