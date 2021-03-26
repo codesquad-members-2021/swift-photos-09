@@ -32,6 +32,7 @@ class PhotoViewController: UIViewController {
         collectionView.addGestureRecognizer(longPressGesutreRecognizer)
         
         collectionView.allowsMultipleSelection = true
+        updateDoneButtonState()
     }
     
     deinit {
@@ -46,6 +47,7 @@ class PhotoViewController: UIViewController {
             let cell = self.collectionView.cellForItem(at: indexPath) as! PhotoCell
             savedItems.append(cell)
             cell.becomeFirstResponder()
+          
             //let saveMenuItem = UIMenuItem(title: "Save", action: #selector(savePhoto))
             //UIMenuController.shared.menuItems = [saveMenuItem]
             //UIMenuController.shared.showMenu(from: collectionView, rect: cell.frame)
@@ -57,6 +59,10 @@ class PhotoViewController: UIViewController {
             return
         }
         self.navigationController?.pushViewController(doodleViewController, animated: true)
+    }
+    
+    func updateDoneButtonState() {
+        navigationItem.rightBarButtonItem?.isEnabled = collectionView.indexPathsForSelectedItems!.count >= 3
     }
 }
 
@@ -89,6 +95,10 @@ extension PhotoViewController: UICollectionViewDataSource {
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        updateDoneButtonState()
     }
 }
 
