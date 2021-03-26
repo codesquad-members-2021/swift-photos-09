@@ -19,17 +19,27 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bda-ew-Ead">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hk0-Y9-vuD">
+                        <rect key="frame" x="72" y="0.0" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="28" id="9ow-gh-k0X"/>
+                            <constraint firstAttribute="height" constant="28" id="IfH-RZ-Pr1"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="hk0-Y9-vuD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5y2-uj-r5h"/>
                 <constraint firstAttribute="trailing" secondItem="bda-ew-Ead" secondAttribute="trailing" id="BDf-Ji-PRH"/>
                 <constraint firstItem="bda-ew-Ead" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Fok-RN-4Gs"/>
                 <constraint firstAttribute="bottom" secondItem="bda-ew-Ead" secondAttribute="bottom" id="Slt-Nw-xOm"/>
+                <constraint firstAttribute="trailing" secondItem="hk0-Y9-vuD" secondAttribute="trailing" id="Uf6-N9-u2k"/>
                 <constraint firstItem="bda-ew-Ead" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dqx-iH-j5M"/>
             </constraints>
             <connections>
                 <outlet property="imageView" destination="bda-ew-Ead" id="khq-eM-knX"/>
+                <outlet property="livePhotoBadgeImageView" destination="hk0-Y9-vuD" id="xHD-2v-FF0"/>
             </connections>
             <point key="canvasLocation" x="139" y="104"/>
         </collectionViewCell>
